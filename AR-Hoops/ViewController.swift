@@ -38,6 +38,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let ball = SCNNode(geometry: SCNSphere(radius: 0.3))
             ball.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "ball")
             ball.position = position
+            let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: ball))
+            ball.physicsBody = body
+            ball.physicsBody?.applyForce(SCNVector3(orientation.x, orientation.y, orientation.z), asImpulse: true)
             self.sceneView.scene.rootNode.addChildNode(ball)
         }
     }
