@@ -16,9 +16,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let configuration = ARWorldTrackingConfiguration()
     var power: Float = 1
     let timer = Each(0.05).seconds
-    var basketAdded: Bool {
-        return self.sceneView.scene.rootNode.childNode(withName: "Basket", recursively: false) != nil
-    }
+    var basketAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
@@ -52,6 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func shootBall() {
         
         guard let pointOfView = self.sceneView.pointOfView else {return}
+        self.removeEveryOtherBall()
         let transform = pointOfView.transform
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
@@ -61,7 +60,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         ball.position = position
         let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: ball))
         ball.physicsBody = body
-        
+        ball.name = "Basketball"
         ball.physicsBody?.applyForce(SCNVector3(orientation.x*power, orientation.y*power, orientation.z*power), asImpulse: true)
         self.sceneView.scene.rootNode.addChildNode(ball)
         
@@ -78,6 +77,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addBasket(hitTestResult: ARHitTestResult) {
+        if basketAdded == false {
         let basketScene = SCNScene(named: "Basketball.scnassets/Basketball.scn")
         let basketNode = basketScene?.rootNode.childNode(withName: "Basket", recursively: false)
         let positionOfPlane = hitTestResult.worldTransform.columns.3
@@ -87,7 +87,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         basketNode?.position = SCNVector3(xPosition,yPosition,zPosition)
         basketNode?.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: basketNode!, options: [SCNPhysicsShape.Option.keepAsCompound: true, SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.concavePolyhedron]))
         self.sceneView.scene.rootNode.addChildNode(basketNode!)
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.basketAdded = true
+        }
+    }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -102,6 +105,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.planeDetected.isHidden = true
+        }
+    }
+    func removeEveryOtherBall() {
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, _) in
+            if node.name == "Basketball" {
+                node.removeFromParentNode()
+            }
         }
     }
     deinit {
