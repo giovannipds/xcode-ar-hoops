@@ -1,0 +1,6 @@
+framework module Pods_AR_HoopsUITests {
+  umbrella header "Pods-AR-HoopsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
