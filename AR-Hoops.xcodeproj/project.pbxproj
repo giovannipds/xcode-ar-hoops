@@ -14,6 +14,7 @@
 		ADD9D8A120E9E24500013976 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADD9D89F20E9E24500013976 /* LaunchScreen.storyboard */; };
 		ADD9D8AC20E9E24600013976 /* AR_HoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD9D8AB20E9E24600013976 /* AR_HoopsTests.swift */; };
 		ADD9D8B720E9E24600013976 /* AR_HoopsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD9D8B620E9E24600013976 /* AR_HoopsUITests.swift */; };
+		ADD9D8C720E9E4F300013976 /* Basketball.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ADD9D8C620E9E4F300013976 /* Basketball.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		ADD9D8B220E9E24600013976 /* AR-HoopsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AR-HoopsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD9D8B620E9E24600013976 /* AR_HoopsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_HoopsUITests.swift; sourceTree = "<group>"; };
 		ADD9D8B820E9E24600013976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADD9D8C620E9E4F300013976 /* Basketball.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Basketball.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				ADD9D89D20E9E24500013976 /* Assets.xcassets */,
 				ADD9D89F20E9E24500013976 /* LaunchScreen.storyboard */,
 				ADD9D8A220E9E24500013976 /* Info.plist */,
+				ADD9D8C620E9E4F300013976 /* Basketball.scnassets */,
 			);
 			path = "AR-Hoops";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD9D8C720E9E4F300013976 /* Basketball.scnassets in Resources */,
 				ADD9D8A120E9E24500013976 /* LaunchScreen.storyboard in Resources */,
 				ADD9D89E20E9E24500013976 /* Assets.xcassets in Resources */,
 				ADD9D89C20E9E24100013976 /* Main.storyboard in Resources */,
