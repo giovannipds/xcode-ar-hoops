@@ -27,6 +27,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.sceneView.autoenablesDefaultLighting = true
         self.sceneView.delegate = self
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        tapGestureRecognizer.cancelsTouchesInView = false
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -49,8 +50,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func shootBall() {
+        
         guard let pointOfView = self.sceneView.pointOfView else {return}
-        self.power = 10
         let transform = pointOfView.transform
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
@@ -63,6 +64,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         ball.physicsBody?.applyForce(SCNVector3(orientation.x*power, orientation.y*power, orientation.z*power), asImpulse: true)
         self.sceneView.scene.rootNode.addChildNode(ball)
+        
+        
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer) {
