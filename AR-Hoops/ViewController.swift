@@ -36,7 +36,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
             let position = location + orientation
             let ball = SCNNode(geometry: SCNSphere(radius: 0.3))
-            ball.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+            ball.geometry?.firstMaterial?.diffuse.contents = #imageLiteral(resourceName: "ball")
             ball.position = position
             self.sceneView.scene.rootNode.addChildNode(ball)
         }
