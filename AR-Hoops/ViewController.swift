@@ -61,6 +61,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: ball))
         ball.physicsBody = body
         ball.name = "Basketball"
+        body.restitution = 0.2
         ball.physicsBody?.applyForce(SCNVector3(orientation.x*power, orientation.y*power, orientation.z*power), asImpulse: true)
         self.sceneView.scene.rootNode.addChildNode(ball)
         
